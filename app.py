@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, redirect, url_for, request
 from password_manager import save_password, retrieve_password, generate_password
 
 app = Flask(__name__)
@@ -34,7 +34,7 @@ def index_post():
         password = request.form['password']
 
         save_password(web, username, password)
-        return 'password saved'
+        return redirect(url_for('index'))
 
     elif requestMade == 'other':
         web_username = request.form['show_password']
