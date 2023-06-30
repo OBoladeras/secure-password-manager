@@ -46,7 +46,8 @@ def index_post():
         web, username = web_username.split("-")
 
         password = retrieve_password(web, username)
-        return render_template("serve.html", password=password)
+        rate = round(password_rate(password), 2)
+        return render_template("serve.html", password=password, rate=rate)
 
     elif requestMade == "generate_password":
         with open(password_file, "r") as f:
